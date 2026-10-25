@@ -1,0 +1,76 @@
+<aside class="w-full lg:w-96 border-b lg:border-b-0 lg:border-r border-slate-800 bg-slate-900/50 p-6 overflow-y-auto shrink-0 h-full">
+      <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Parametry Symulacji</h2>
+      
+      <form [formGroup]="simForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <!-- Kapitał Początkowy -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Kapitał Początkowy (PLN / USD)</label>
+          <input type="number" formControlName="initialCapital" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+          <div *ngIf="simForm.get('initialCapital')?.invalid && simForm.get('initialCapital')?.touched" class="text-rose-400 text-[10px] mt-1">
+            Wartość musi wynosić co najmniej 1,000.
+          </div>
+        </div>
+
+        <!-- Horyzont Czasowy -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Horyzont Czasowy (Dni robocze)</label>
+          <input type="number" formControlName="timeHorizonDays" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+          <p class="text-[10px] text-slate-500 mt-0.5">252 dni robocze = 1 rok giełdowy</p>
+        </div>
+
+        <!-- Oczekiwana Stopa Zwrotu (Mu) -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Oczekiwany Zwrot μ (% rocznie)</label>
+          <input type="number" step="0.1" formControlName="expectedReturn" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+        </div>
+
+        <!-- Zmienność (Sigma) -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Zmienność σ (% rocznie)</label>
+          <input type="number" step="0.5" formControlName="volatility" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+        </div>
+
+        <!-- Liczba Symulacji (N) -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Liczba Symulacji (N)</label>
+          <select formControlName="simulationCount" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+            <option [ngValue]="1000">1,000 ścieżek (Szybkie)</option>
+            <option [ngValue]="5000">5,000 ścieżek (Standard)</option>
+            <option [ngValue]="10000">10,000 ścieżek (Wysoka Precyzja)</option>
+          </select>
+        </div>
+
+        <!-- Poziom Ufności VaR -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Poziom Ufności VaR</label>
+          <select formControlName="confidenceLevel" 
+            class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+            <option [ngValue]="0.90">90%</option>
+            <option [ngValue]="0.95">95%</option>
+            <option [ngValue]="0.99">99%</option>
+          </select>
+        </div>
+
+        <!-- Przycisk Uruchomienia Symulacji -->
+        <button type="submit" [disabled]="simForm.invalid || simulationService.isLoading()" 
+          class="w-full mt-6 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-2.5 px-4 rounded-lg shadow-lg shadow-indigo-600/25 transition flex items-center justify-center space-x-2">
+          <svg *ngIf="!simulationService.isLoading()" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+          </svg>
+          <span *ngIf="simulationService.isLoading()" class="inline-block animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></span>
+          <span>{{ simulationService.isLoading() ? 'Obliczanie...' : 'Uruchom Symulację' }}</span>
+        </button>
+      </form>
+
+      <div class="mt-8 border-t border-slate-800 pt-4">
+        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Uwaga o Modelu</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Model wykorzystuje stochastyczne Geometryczne Ruchy Browna (GBM) oraz transformację Boxa-Mullera. Rozkład Gaussa nie uwzględnia zjawiska tzw. "grubych ogonów" (ekstremalnych krachów rynkowych).
+        </p>
+      </div>
+    </aside>

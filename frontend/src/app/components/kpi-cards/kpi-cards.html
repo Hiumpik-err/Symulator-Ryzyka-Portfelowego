@@ -1,0 +1,33 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4" *ngIf="results()">
+      <!-- Mediana Wyceny -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+        <div class="text-xs font-medium text-slate-400">Przewidywana Mediana Portfela</div>
+        <div class="text-2xl font-bold text-slate-100 mt-2">
+          \${{ results()!.medianFinalValue | number:'1.0-0' }}
+        </div>
+        <div class="text-xs font-medium mt-1 flex items-center" 
+          [ngClass]="results()!.returnPercentage >= 0 ? 'text-emerald-400' : 'text-rose-400'">
+          {{ results()!.returnPercentage >= 0 ? '+' : '' }}{{ results()!.returnPercentage }}% względem startu
+        </div>
+      </div>
+
+      <!-- Value at Risk (VaR) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+        <div class="text-xs font-medium text-slate-400">
+          Value at Risk ({{ (results()!.confidenceLevel * 100) | number:'1.0-0' }}% VaR)
+        </div>
+        <div class="text-2xl font-bold text-rose-500 mt-2">
+          \${{ results()!.valueAtRisk | number:'1.0-0' }}
+        </div>
+        <div class="text-xs text-slate-400 mt-1">Maksymalna oczekiwana strata z zadanym poziomem ufności</div>
+      </div>
+
+      <!-- Prawdopodobieństwo Zysku -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+        <div class="text-xs font-medium text-slate-400">Prawdopodobieństwo Zysku</div>
+        <div class="text-2xl font-bold text-indigo-400 mt-2">
+          {{ results()!.profitProbability }}%
+        </div>
+        <div class="text-xs text-slate-400 mt-1">Szansa na zakończenie z wartością &gt; kapitał początkowy</div>
+      </div>
+    </div>
