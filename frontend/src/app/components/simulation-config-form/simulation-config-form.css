@@ -1,0 +1,142 @@
+/* Główny kontener sidebara */
+.config-sidebar {
+  width: 100%;
+  border-bottom: 1px solid #1e293b; /* slate-800 */
+  background-color: rgba(15, 23, 42, 0.5); /* slate-900/50 */
+  padding: 24px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .config-sidebar {
+    width: 384px; /* lg:w-96 */
+    border-bottom: none;
+    border-right: 1px solid #1e293b;
+  }
+}
+
+/* Nagłówki sekcji */
+.config-title, .disclaimer-title {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600;
+  color: #94a3b8; /* slate-400 */
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* tracking-wider */
+  margin: 0 0 16px 0;
+}
+
+/* Formularz i odstępy */
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* space-y-4 */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Etykiety pól */
+.form-label {
+  display: block;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;
+  color: #cbd5e1; /* slate-300 */
+  margin-bottom: 4px;
+}
+
+/* Pola tekstowe, numeryczne i selecty */
+.form-input, .form-select {
+  width: 100%;
+  background-color: #020617; /* slate-950 */
+  border: 1px solid #1e293b; /* slate-800 */
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.875rem; /* text-sm */
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: #6366f1; /* indigo-500 */
+}
+
+/* Podpowiedzi i błędy walidacji */
+.form-hint {
+  font-size: 10px;
+  color: #64748b; /* slate-500 */
+  margin: 2px 0 0 0;
+}
+
+.form-error {
+  font-size: 10px;
+  color: #fb7185; /* rose-400 */
+  margin-top: 4px;
+}
+
+/* Przycisk akcji */
+.submit-btn {
+  width: 100%;
+  margin-top: 24px; /* mt-6 */
+  background-color: #4f46e5; /* indigo-600 */
+  color: #ffffff;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #6366f1; /* indigo-500 */
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Spinner ładowania */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 9999px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sekcja ostrzeżenia o modelu na dole sidebara */
+.model-disclaimer-box {
+  margin-top: 32px; /* mt-8 */
+  border-top: 1px solid #1e293b;
+  padding-top: 16px; /* pt-4 */
+}
+
+.disclaimer-text {
+  font-size: 0.75rem; /* text-xs */
+  color: #64748b; /* slate-500 */
+  line-height: 1.6;
+  margin: 0;
+}

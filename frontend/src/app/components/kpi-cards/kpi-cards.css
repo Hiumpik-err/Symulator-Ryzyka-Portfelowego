@@ -1,0 +1,67 @@
+/* Układ siatki dla kart (1 kolumna na mobile, 3 na ekranach średnich/dużych) */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; /* gap-4 */
+}
+
+@media (min-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* md:grid-cols-3 */
+  }
+}
+
+/* Pojedyncza karta KPI */
+.kpi-card {
+  background-color: #0f172a; /* bg-slate-900 */
+  border: 1px solid #1e293b; /* border-slate-800 */
+  border-radius: 12px; /* rounded-xl */
+  padding: 20px; /* p-5 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tytuły i opisy */
+.kpi-title {
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;
+  color: #94a3b8; /* text-slate-400 */
+}
+
+.kpi-value {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700; /* font-bold */
+  color: #f1f5f9; /* text-slate-100 */
+  margin-top: 8px; /* mt-2 */
+}
+
+.kpi-subtext {
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;
+  margin-top: 4px; /* mt-1 */
+  display: flex;
+  align-items: center;
+}
+
+.kpi-desc {
+  font-size: 0.75rem; /* text-xs */
+  color: #94a3b8; /* text-slate-400 */
+  margin-top: 4px; /* mt-1 */
+}
+
+/* Specyficzne kolory wartości i wskaźników */
+.text-emerald {
+  color: #34d399; /* text-emerald-400 */
+}
+
+.text-rose {
+  color: #fb7185; /* text-rose-400 */
+}
+
+.text-rose-bold {
+  color: #f43f5e; /* text-rose-500 */
+}
+
+.text-indigo {
+  color: #818cf8; /* text-indigo-400 */
+}

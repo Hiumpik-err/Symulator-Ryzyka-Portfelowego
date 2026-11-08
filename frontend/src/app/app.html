@@ -1,1 +1,48 @@
-<h1>Hello</h1>
+<div class="dashboard-container">
+  
+  <!-- LEWY PANEL: Formularz konfiguracyjny -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo-title">Monte Carlo Sim</h1>
+      <p class="logo-subtitle">Symulator ryzyka portfelowego (GBM)</p>
+    </div>
+    
+    <div class="sidebar-content">
+      <app-simulation-config-form></app-simulation-config-form>
+    </div>
+  </aside>
+
+  <!-- PRAWY PANEL: Główny Dashboard Analityczny -->
+  <main class="main-content">
+    
+    <!-- Górny nagłówek -->
+    <header class="top-header">
+      <span class="header-title">Dashboard Analityczny</span>
+      <div class="status-badge">
+        System Gotowy
+      </div>
+    </header>
+
+    <!-- Zawartość Dashboardu -->
+    <div class="dashboard-body">
+      
+      <!-- Karty KPI (Mediana, VaR, Zysk) -->
+      <app-kpi-cards></app-kpi-cards>
+
+      <!-- Sekcja wykresów -->
+      <div class="charts-grid">
+        <!-- Wykres wstęgowy (Fan Chart) -->
+        <div class="card chart-card">
+          <app-fan-chart></app-fan-chart>
+        </div>
+
+        <!-- Histogram rozkładu końcowego -->
+        <div class="card chart-card">
+          <app-distribution-histogram></app-distribution-histogram>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>

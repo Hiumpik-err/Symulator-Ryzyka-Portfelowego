@@ -1,0 +1,121 @@
+/* Główny kontener aplikacji */
+.dashboard-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #020617; /* slate-950 */
+  color: #f1f5f9;            /* slate-100 */
+  overflow: hidden;
+}
+
+/* Górny nagłówek nawigacyjny */
+.top-nav-header {
+  border-bottom: 1px solid #1e293b; /* slate-800 */
+  background-color: rgba(15, 23, 42, 0.8); /* slate-900 z przezroczystością */
+  backdrop-filter: blur(8px);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* space-x-3 */
+}
+
+.nav-icon-wrapper {
+  padding: 8px;
+  background-color: rgba(79, 70, 229, 0.2); /* indigo-600/20 */
+  border: 1px solid rgba(99, 102, 241, 0.3); /* indigo-500/30 */
+  border-radius: 8px;
+  color: #818cf8; /* indigo-400 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-title {
+  font-weight: 700;
+  font-size: 1.125rem; /* text-lg */
+  color: #ffffff;
+  line-height: 1;
+  margin: 0;
+}
+
+.nav-subtitle {
+  font-size: 0.75rem; /* text-xs */
+  color: #94a3b8;     /* slate-400 */
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.nav-status-container {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* space-x-4 */
+}
+
+/* Status Badge */
+.status-badge-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* gap-x-1.5 */
+  padding: 4px 10px; /* px-2.5 py-1 */
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: rgba(16, 185, 129, 0.1); /* emerald-500/10 */
+  color: #34d399; /* emerald-400 */
+  border: 1px solid rgba(16, 185, 129, 0.2); /* emerald-500/20 */
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #34d399;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+/* Główny kontener układu dwukolumnowego */
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* RWD: Na dużych ekranach (lg) układ wierszowy (sidebar po lewej, główny obszar po prawej) */
+@media (min-width: 1024px) {
+  .main-layout {
+    flex-direction: row;
+  }
+}
+
+/* Główny obszar analityczny (prawa strona / dół) */
+.analytics-main-area {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* space-y-6 */
+  height: 100%;
+}

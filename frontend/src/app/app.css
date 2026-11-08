@@ -1,0 +1,116 @@
+/* Główny kontener aplikacji */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #020617; /* Odpowiednik bg-slate-950 */
+  color: #f1f5f9;            /* Odpowiednik text-slate-100 */
+  overflow: hidden;
+}
+
+/* Lewy panel boczny (Sidebar) */
+.sidebar {
+  width: 384px;                  /* Odpowiednik w-96 */
+  background-color: #0f172a;     /* Odpowiednik bg-slate-900 */
+  border-right: 1px solid #1e293b; /* Odpowiednik border-slate-800 */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 24px;                 /* Odpowiednik p-6 */
+  border-bottom: 1px solid #1e293b;
+}
+
+.logo-title {
+  font-size: 1.25rem;            /* Odpowiednik text-xl */
+  font-weight: 700;              /* Odpowiednik font-bold */
+  letter-spacing: -0.025em;      /* Odpowiednik tracking-tight */
+  color: #34d399;                /* Odpowiednik text-emerald-400 */
+  margin: 0;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;            /* Odpowiednik text-xs */
+  color: #94a3b8;                /* Odpowiednik text-slate-400 */
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.sidebar-content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;              /* Niezależne przewijanie formularza */
+}
+
+/* Prawy główny panel roboczy */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Górny nagłówek dashboardu */
+.top-header {
+  height: 64px;                  /* Odpowiednik h-16 */
+  border-bottom: 1px solid #1e293b;
+  background-color: rgba(15, 23, 42, 0.5); /* Półprzezroczysty bg-slate-900 */
+  backdrop-filter: blur(8px);    /* Odpowiednik backdrop-blur */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;               /* Odpowiednik px-8 */
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-size: 0.875rem;           /* Odpowiednik text-sm */
+  font-weight: 500;              /* Odpowiednik font-medium */
+  color: #cbd5e1;                /* Odpowiednik text-slate-300 */
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  background-color: rgba(16, 185, 129, 0.1); /* Zielonkawy odcień tła */
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 4px 12px;
+  border-radius: 9999px;         /* Pełne zaokrąglenie (rounded-full) */
+}
+
+/* Obszar zawartości dashboardu */
+.dashboard-body {
+  padding: 32px;                 /* Odpowiednik p-8 */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                     /* Odpowiednik space-y-6 */
+  flex: 1;
+}
+
+/* Siatka wykresów (RWD: 1 kolumna na mobile, 2 na dużych ekranach) */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Odpowiednik lg:grid-cols-2 */
+  }
+}
+
+/* Uniwersalne karty i kontenery wykresów */
+.card {
+  background-color: #0f172a;     /* bg-slate-900 */
+  border: 1px solid #1e293b;     /* border-slate-800 */
+  padding: 24px;                 /* p-6 */
+  border-radius: 12px;           /* rounded-xl */
+}
+
+.chart-card {
+  height: 400px;                 /* Stała wysokość dla kontenerów wykresów */
+}
