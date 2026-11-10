@@ -6,9 +6,12 @@
     <div class="form-group">
       <label class="form-label">Kapitał Początkowy (PLN / USD)</label>
       <input type="number" formControlName="initialCapital" class="form-input">
-      <div *ngIf="simForm.get('initialCapital')?.invalid && simForm.get('initialCapital')?.touched" class="form-error">
-        Wartość musi wynosić co najmniej 1,000.
-      </div>
+      @if (simForm.get('initialCapital')?.invalid && simForm.get('initialCapital')?.touched)
+      {
+        <div class="form-error">
+          Wartość musi wynosić co najmniej 1,000.
+        </div>
+      }
     </div>
 
     <!-- Horyzont Czasowy -->
@@ -52,10 +55,16 @@
 
     <!-- Przycisk Uruchomienia Symulacji -->
     <button type="submit" [disabled]="simForm.invalid || simulationService.isLoading()" class="submit-btn">
-      <svg *ngIf="!simulationService.isLoading()" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-      </svg>
-      <span *ngIf="simulationService.isLoading()" class="spinner"></span>
+      @if (!simulationService.isLoading())
+      {
+        <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+        </svg>
+      }
+      @if (simulationService.isLoading())
+      {
+        <span class="spinner"></span>
+      }
       <span>{{ simulationService.isLoading() ? 'Obliczanie...' : 'Uruchom Symulację' }}</span>
     </button>
   </form>

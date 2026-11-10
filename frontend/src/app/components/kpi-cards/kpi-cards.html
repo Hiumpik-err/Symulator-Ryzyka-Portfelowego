@@ -1,32 +1,34 @@
-<div class="kpi-grid" *ngIf="results()">
-  <!-- Mediana Wyceny -->
-  <div class="kpi-card">
-    <div class="kpi-title">Przewidywana Mediana Portfela</div>
-    <div class="kpi-value">
-      ${{ results()!.medianFinalValue | number:'1.0-0' }}
+@if (results()) {
+  <div class="kpi-grid">
+    <!-- Mediana Wyceny -->
+    <div class="kpi-card">
+      <div class="kpi-title">Przewidywana Mediana Portfela</div>
+      <div class="kpi-value">
+        ${{ results()!.medianFinalValue | number:'1.0-0' }}
+      </div>
+      <div class="kpi-subtext" [class]="results()!.returnPercentage >= 0 ? 'text-emerald' : 'text-rose'">
+        {{ results()!.returnPercentage >= 0 ? '+' : '' }}{{ results()!.returnPercentage }}% względem startu
+      </div>
     </div>
-    <div class="kpi-subtext" [ngClass]="results()!.returnPercentage >= 0 ? 'text-emerald' : 'text-rose'">
-      {{ results()!.returnPercentage >= 0 ? '+' : '' }}{{ results()!.returnPercentage }}% względem startu
-    </div>
-  </div>
 
-  <!-- Value at Risk (VaR) -->
-  <div class="kpi-card">
-    <div class="kpi-title">
-      Value at Risk ({{ (results()!.confidenceLevel * 100) | number:'1.0-0' }}% VaR)
+    <!-- Value at Risk (VaR) -->
+    <div class="kpi-card">
+      <div class="kpi-title">
+        Value at Risk ({{ (results()!.confidenceLevel * 100) | number:'1.0-0' }}% VaR)
+      </div>
+      <div class="kpi-value text-rose-bold">
+        ${{ results()!.valueAtRisk | number:'1.0-0' }}
+      </div>
+      <div class="kpi-desc">Maksymalna oczekiwana strata z zadanym poziomem ufności</div>
     </div>
-    <div class="kpi-value text-rose-bold">
-      ${{ results()!.valueAtRisk | number:'1.0-0' }}
-    </div>
-    <div class="kpi-desc">Maksymalna oczekiwana strata z zadanym poziomem ufności</div>
-  </div>
 
-  <!-- Prawdopodobieństwo Zysku -->
-  <div class="kpi-card">
-    <div class="kpi-title">Prawdopodobieństwo Zysku</div>
-    <div class="kpi-value text-indigo">
-      {{ results()!.profitProbability }}%
+    <!-- Prawdopodobieństwo Zysku -->
+    <div class="kpi-card">
+      <div class="kpi-title">Prawdopodobieństwo Zysku</div>
+      <div class="kpi-value text-indigo">
+        {{ results()!.profitProbability }}%
+      </div>
+      <div class="kpi-desc">Szansa na zakończenie z wartością > kapitał początkowy</div>
     </div>
-    <div class="kpi-desc">Szansa na zakończenie z wartością > kapitał początkowy</div>
   </div>
-</div>
+}
